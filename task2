@@ -1,0 +1,16 @@
+def stop_words(words: list):
+    def variable(func):
+        def wrapper(list):
+            new_list = func(list)
+            for word in words:
+                if word in new_list:
+                    new_list = new_list.replace(word, '*')
+            return new_list
+        return wrapper
+    return variable
+
+@stop_words(['pepsi', 'BMW'])
+def create_slogan(name: str) -> str:
+
+    return f"{name} drinks pepsi in his brand new BMW!"
+print(create_slogan('Steve'))
