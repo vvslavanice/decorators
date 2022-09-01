@@ -1,0 +1,35 @@
+'''
+Это является небольшой код который я пытался найти чтобы решить первое, так как декораторы идут достаточно сложно,
+я начал искать примерное решение и случайно просто нашел прикольный модуль nltk, это не относится к декораторам,
+но это относится просто к решению задачи по замене слов, выглядит очень эффектно.
+
+Решая таким образом я вспомнил Гарри Поттера который нашёл книжку "Принц-Полукровка", и резко стал самым умным, хотя
+по факту это была книжка.
+
+https://stackabuse.com/removing-stop-words-from-strings-in-python/ я проучил все возможные методы, поэтому можете тоже
+посмотреть.
+'''
+
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+from nltk.tokenize import word_tokenize
+
+text = "Steve drinks pepsi in his new BMW!"
+text_tokens = word_tokenize(text)
+tokens_without_sw = [word for word in text_tokens if not word in stopwords.words()]
+
+all_stopwords = stopwords.words('english')
+all_stopwords.remove('in')
+all_stopwords.remove('his')
+all_stopwords.append('pepsi')
+all_stopwords.append('BMW')
+
+text_tokens = word_tokenize(text)
+tokens_without_sw = [word for word in text_tokens if not word in all_stopwords]
+
+print(tokens_without_sw)
+
+'''
+Response should be like that - ['Steve', 'drinks', 'in', 'his', 'new', '!']
+'''
